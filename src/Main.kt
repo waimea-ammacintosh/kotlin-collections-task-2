@@ -141,7 +141,7 @@ fun listAllCages(cageList: List<String>) {
     println("CAGES")
 
     for(i in 0..< cageList.size)  {
-    println("Cage ${i + 1}:  ${cageList[i]}")
+    println("- Cage ${i + 1}:  ${cageList[i]}")
     }
 }
 
@@ -179,7 +179,7 @@ fun listEmptyCages(cageList: List<String>) {
 
     for (i in (0..< cageList.size)) {
         if  (cageList[i] == EMPTY) {
-            println("- ${i + 1}")
+            println("- Cage ${i + 1}")
         }
     }
 }
@@ -202,7 +202,7 @@ fun listAllMonkeysAndCages(cageList: List<String>) {
 
     for(i in 0..< cageList.size)  {
         if  (cageList[i] != EMPTY) {
-            println("${cageList[i]}   (Cage ${i + 1})")
+            println("- ${cageList[i].padEnd(7)}   (Cage ${i + 1})")
         }
 
     }
@@ -255,7 +255,7 @@ fun showMonkeyCages(cageList: List<String>) {
     println("| Cage 1 | Cage 2 | Cage 3 | Cage 4 | Cage 5 | Cage 6 | Cage 7 | Cage 8 |")
     println("+--------+--------+--------+--------+--------+--------+--------+--------+")
     for ((i, monkey) in cageList.withIndex()) {
-        print("| ${monkey.padEnd(7)}  ")
+        print("| ${monkey.padEnd(7)}")
     }
     println("|")
     println("+--------+--------+--------+--------+--------+--------+--------+--------+")
@@ -283,11 +283,14 @@ fun clearCage(cageList: MutableList<String>, cageNum: Int) {
  */
 fun swapCages(cageList: MutableList<String>, cageNum1: Int, cageNum2: Int) {
     println("<-> Swapping cages $cageNum1 and $cageNum2")
+    val monkey1 = cageList[cageNum1 -1]
+    val monkey2 = cageList[cageNum2 -1]
 
-    cageList.add(index = cageNum1 , cageList[cageNum2])
-    cageList.add(index = cageNum2 , cageList[cageNum1])
-    cageList.removeAt(cageNum1 + 1 )
-    cageList.removeAt(cageNum2 + 1)
+    cageList.removeAt(cageNum1 -1,)
+    cageList.add(index = cageNum1 -1, monkey2)
+    cageList.removeAt(cageNum2 -1)
+    cageList.add(index = cageNum2 -1, monkey1)
+
 
 }
 
